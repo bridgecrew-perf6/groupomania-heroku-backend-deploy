@@ -27,6 +27,7 @@ db.authenticate().then(() => {
 })
 
 app.use(cors())
+app.options('*', cors()) // enables pre-flight requests before other routes
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*') //! so we can test with a random phone
   next() //! might be a security issue though
@@ -34,7 +35,6 @@ app.use((req, res, next) => {
 app.use(helmet({ crossOriginEmbedderPolicy: true })) // headers config
 
 app.use(express.json())
-app.options('*', cors()) // enables pre-flight requests before other routes
 
 app.use(hpp()) //! Prevents query parameter pollution
 
