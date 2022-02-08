@@ -27,7 +27,7 @@ db.authenticate().then(() => {
 })
 
 app.use(cors())
-app.use(helmet({ crossOriginEmbedderPolicy: true })) // headers config
+// app.use(helmet({ crossOriginEmbedderPolicy: true })) // headers config
 
 app.use(express.json())
 app.options('*', cors()) // enables pre-flight requests before other routes
