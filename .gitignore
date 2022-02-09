@@ -108,3 +108,6 @@ dist
 /images/**
 /**/database.sqlite
 /**/open-classroom-p7-firebase-adminsdk-jfk0t-9e1dd12dcd.json
+
+key.pem
+cert.pem

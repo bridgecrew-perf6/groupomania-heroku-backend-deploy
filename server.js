@@ -5,7 +5,7 @@ const https = require('https')
 const fs = require('fs')
 const app = require('./app')
 
-const { SERVER_KEY, SERVER_CERT } = process.env
+const { SERVER_KEY, SERVER_CERT, SERVER_WORD } = process.env
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10)
@@ -38,6 +38,7 @@ const errorHandler = (error) => {
 const server = https.createServer({
   key: SERVER_KEY, //! use fs.readFileSync('./key.pem') if stored in local
   cert: SERVER_CERT,
+  passphrase: SERVER_WORD,
 }, app)
 
 server.on('error', errorHandler)
