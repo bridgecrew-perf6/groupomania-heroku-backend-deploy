@@ -11,7 +11,7 @@ const db = new Sequelize({
   dialect: 'mysql',
   HOST: DB_URL,
   USER: DB_USER,
-  password: DB_PASSWORD,
+  PASSWORD: DB_PASSWORD,
   pool: {
     connectionLimit: 5,
     // 'connectTimeout' is the maximum number of milliseconds before a timeout
