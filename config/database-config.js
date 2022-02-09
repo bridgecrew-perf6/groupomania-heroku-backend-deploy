@@ -33,6 +33,12 @@ const db = new Sequelize(/* {
     queueLimit: 0, // Default: 0
   },
 } */
-  DATABASE_URL, { dialectModule: pg },
+  DATABASE_URL, {
+    dialectModule: pg,
+    ssl: true,
+    /* dialectOptions: {
+      ssl: true,
+    }, */
+  },
 )
 module.exports = db
