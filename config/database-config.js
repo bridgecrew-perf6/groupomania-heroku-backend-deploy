@@ -5,11 +5,13 @@ const dotenv = require('dotenv')
 dotenv.config()
 const { DIALECT } = process.env
 const { PATH_TO_DB } = process.env
-const { DB_URL } = process.env
+const { DB_URL, DB_USER, DB_PASSWORD } = process.env
 
 const db = new Sequelize({
   dialect: 'mysql',
   host: DB_URL,
+  user: DB_USER,
+  password: DB_PASSWORD,
   pool: {
     connectionLimit: 5,
     // 'connectTimeout' is the maximum number of milliseconds before a timeout
