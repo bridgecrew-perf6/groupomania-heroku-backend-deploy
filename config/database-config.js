@@ -34,11 +34,12 @@ const db = new Sequelize(/* {
   },
 } */
   DATABASE_URL, {
-    dialectModule: pg,
-    ssl: true,
-    /* dialectOptions: {
-      ssl: true,
-    }, */
+    dialect: 'postgres',
+
+    dialectOptions: {
+      require: true,
+      rejectUnauthorized: false,
+    },
   },
 )
 module.exports = db
