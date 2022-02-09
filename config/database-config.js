@@ -7,7 +7,7 @@ const { DIALECT } = process.env
 const { PATH_TO_DB } = process.env
 const { DB_URL, DB_USER, DB_PASSWORD } = process.env
 
-const db = new Sequelize({
+const db = new Sequelize(/* {
   dialect: 'mysql',
   HOST: DB_URL,
   USER: DB_USER,
@@ -28,5 +28,7 @@ const db = new Sequelize({
     // will queue at once before returning an error. If 0, there is no limit.
     queueLimit: 0, // Default: 0
   },
-})
+} */
+  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_URL}/groupomania-db`,
+)
 module.exports = db
