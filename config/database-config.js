@@ -1,5 +1,5 @@
 // ! sqlite connection
-const pg = require('pg')
+const { Client } = require('pg')
 
 const Sequelize = require('sequelize')
 const dotenv = require('dotenv')
@@ -34,8 +34,8 @@ const db = new Sequelize(/* {
   },
 } */
   DATABASE_URL, {
-    dialect: 'postgres',
-    port: 5432,
+    dialect: 'pg',
+    /* port: 5432, */
     dialectOptions: { //! no pg_a_..conf otherwise
 
       require: true,
