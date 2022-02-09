@@ -29,6 +29,6 @@ const db = new Sequelize(/* {
     queueLimit: 0, // Default: 0
   },
 } */
-  `mysql://${DB_USER}:${DB_PASSWORD}@34.65.29.50`,
+  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_URL}`,
 )
 module.exports = db
