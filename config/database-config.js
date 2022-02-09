@@ -5,10 +5,12 @@ const dotenv = require('dotenv')
 dotenv.config()
 const { DIALECT } = process.env
 const { PATH_TO_DB } = process.env
-const { DB_URL, DB_USER, DB_PASSWORD } = process.env
+const {
+  DB_URL, DB_USER, DB_PASSWORD, DATABASE_URL,
+} = process.env
 
 const db = new Sequelize(/* {
-  dialect: 'mysql',
+  dialect: 'postgres',
   HOST: DB_URL,
   USER: DB_USER,
   PASSWORD: DB_PASSWORD,
@@ -29,6 +31,6 @@ const db = new Sequelize(/* {
     queueLimit: 0, // Default: 0
   },
 } */
-  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_URL}`,
+  DATABASE_URL,
 )
 module.exports = db
