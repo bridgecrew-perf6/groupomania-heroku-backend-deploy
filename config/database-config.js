@@ -1,4 +1,6 @@
 // ! sqlite connection
+const pg = require('pg')
+
 const Sequelize = require('sequelize')
 const dotenv = require('dotenv')
 
@@ -31,6 +33,6 @@ const db = new Sequelize(/* {
     queueLimit: 0, // Default: 0
   },
 } */
-  DATABASE_URL,
+  DATABASE_URL, { dialectModule: pg },
 )
 module.exports = db
