@@ -19,7 +19,7 @@ const Like = db.define('like', {
     defaultValue: User.id,
   },
   value: {
-    type: Sequelize.ENUM(['like', 'disliked', 'default']),
+    type: Sequelize.pg_enum('like', 'disliked', 'default'),
     defaultValue: 'default',
   },
 })
