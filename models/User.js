@@ -42,7 +42,7 @@ const User = db.define('user', {
 })
 
 const update = async () => {
-  await User.sync({ force: true })
+  await User.sync()
 }
 
 update()

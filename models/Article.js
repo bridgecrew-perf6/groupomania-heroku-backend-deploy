@@ -49,7 +49,7 @@ Article.belongsTo(User)
 Profile.hasMany(Article)
 Article.belongsTo(Profile)
 
-Article.sync({ force: true })
+Article.sync()
 
 exports.ShowUsersTasks = async () => {
   await db.sync() // ! check if it can be removed

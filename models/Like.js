@@ -19,7 +19,7 @@ const Like = db.define('like', {
     defaultValue: User.id,
   },
   value: {
-    type: Sequelize.ENUM('like', 'disliked', 'default'),
+    type: Sequelize.ENUM(['like', 'disliked', 'default']),
     defaultValue: 'default',
   },
 })
@@ -28,5 +28,5 @@ Article.hasMany(Like) //!   had a hasMany relation setup first
 Like.belongsTo(Article)//! BUT for every entry in table like, it is only associated
 User.hasMany(Like) //!      with one article and one user
 Like.belongsTo(User)
-Like.sync({ force: true })
+Like.sync(/* { force: true } */)
 module.exports = Like

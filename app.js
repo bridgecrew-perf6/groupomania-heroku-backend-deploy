@@ -26,7 +26,7 @@ db.authenticate().then(() => {
   console.log(`Error: ${err}`);
 })
 const corsOptions = {
-  origin: '*',
+  origin: 'https://groupomania-test-deploy-aurelien-guillaudon.netlify.app',
 }
 app.use(cors({ origin: '*' }))
 
