@@ -9,8 +9,8 @@ const { DB_URL, DB_USER, DB_PASSWORD } = process.env
 
 const db = new Sequelize({
   dialect: 'mysql',
-  host: DB_URL,
-  user: DB_USER,
+  HOST: DB_URL,
+  USER: DB_USER,
   password: DB_PASSWORD,
   pool: {
     connectionLimit: 5,
