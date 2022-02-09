@@ -37,9 +37,11 @@ const db = new Sequelize(/* {
     dialect: 'pg',
     /* port: 5432, */
     dialectOptions: { //! no pg_a_..conf otherwise
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
 
-      require: true,
-      rejectUnauthorized: false,
     },
   },
 )
