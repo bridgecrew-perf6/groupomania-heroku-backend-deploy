@@ -14,7 +14,7 @@ const normalizePort = (val) => {
   if (port >= 0) { return port }
   return false
 }
-const port = normalizePort(process.env.PORT || '3333')
+const port = normalizePort(process.env.PORT || '443')
 app.set('port', port)
 
 const errorHandler = (error) => {
@@ -38,7 +38,7 @@ const errorHandler = (error) => {
 const server = https.createServer({
   key: SERVER_KEY, //! use fs.readFileSync('./key.pem') if stored in local
   cert: SERVER_CERT,
-  passphrase: SERVER_WORD,
+  /* passphrase: SERVER_WORD, */
 }, app)
 
 server.on('error', errorHandler)
