@@ -33,6 +33,6 @@ Profile.hasOne(User)
 User.belongsTo(Profile)
 User.hasOne(Profile)
 
-Profile.sync()
+Profile.sync({ force: true })
 
 module.exports = Profile
