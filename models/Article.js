@@ -29,7 +29,7 @@ const Article = db.define('article', {
     allowNull: true,
   },
   likesCount: {
-    type: Sequelize.NUMBER,
+    type: Sequelize.BIGINT,
     defaultValue: 0,
   },
   doesUserLikes: {
