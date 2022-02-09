@@ -29,6 +29,6 @@ const db = new Sequelize(/* {
     queueLimit: 0, // Default: 0
   },
 } */
-  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_URL}groupomania-db`,
+  `mysql://${DB_USER}:${DB_PASSWORD}@${DB_URL}/groupomania-db`,
 )
 module.exports = db
