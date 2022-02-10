@@ -1,1 +1,1 @@
-web:node server.js
+web:node --inspect=9229 server.js
