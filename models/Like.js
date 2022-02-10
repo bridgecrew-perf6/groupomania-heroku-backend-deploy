@@ -13,11 +13,13 @@ const Like = db.define('like', {
   articleId: {
     type: Sequelize.UUID,
     defaultValue: Article.id,
+    allowNull: true,
   },
   userId: {
     /* //! might switch to userID but i am afraid it conflicts */
     type: Sequelize.UUID,
     defaultValue: User.id,
+    allowNull: true,
   },
   value: {
     type: Sequelize.ENUM(
