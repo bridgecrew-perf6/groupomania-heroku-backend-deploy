@@ -28,10 +28,10 @@ db.authenticate()
   .then(async () => {
     console.log('Database connected...')
     await User.sync({ force: true })
-    await Profile.sync()
+    /* await Profile.sync()
     await Article.sync()
     await Comment.sync()
-    await Like.sync()
+    await Like.sync() */
   })
   .catch((err) => {
     console.log(`Error: ${err}`)
