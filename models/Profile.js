@@ -28,8 +28,8 @@ const Profile = db.define('profile', {
   },
 })
 
-Profile.belongsTo(User)
-Profile.hasOne(User)
+Profile?.belongsTo(User)
+Profile?.hasOne(User)
 User.belongsTo(Profile)
 User.hasOne(Profile)
 
