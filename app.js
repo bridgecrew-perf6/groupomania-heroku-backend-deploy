@@ -39,7 +39,7 @@ db.authenticate()
 const corsOptions = {
   origin: 'https://groupomania-test-deploy-aurelien-guillaudon.netlify.app',
 }
-app.use(cors({ origin: '*' }))
+app.use(cors(corsOptions))
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*') //! so we can test with a random phone
