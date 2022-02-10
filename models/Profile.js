@@ -15,7 +15,7 @@ const Profile = db.define('profile', {
   },
   userId: {
     type: Sequelize.UUID,
-    defaultValue: User.id,
+    defaultValue: User?.id,
     allowNull: false,
   },
   userPicUrl: {
