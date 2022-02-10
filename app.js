@@ -30,9 +30,6 @@ db.authenticate()
     await User.sync({ force: true })
   })
   .then(async () => {
-    await Profile.sync()
-  })
-  .then(async () => {
     await Article.sync()
   })
   .then(async () => {
@@ -40,6 +37,9 @@ db.authenticate()
   })
   .then(async () => {
     await Like.sync()
+  })
+  .then(async () => {
+    await Profile.sync()
   })
   .catch((err) => {
     console.log(`Error: ${err}`)
