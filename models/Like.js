@@ -29,5 +29,5 @@ Article.hasMany(Like) //!   had a hasMany relation setup first
 Like.belongsTo(Article) //! BUT for every entry in table like, it is only associated
 User.hasMany(Like) //!      with one article and one user
 Like.belongsTo(User)
-Like.sync(/* { force: true } */)
+/* Like.sync({ force: true }) */
 module.exports = Like

@@ -17,12 +17,21 @@ const articleRoutes = require('./routes/article')
 
 const { apiLimiter } = require('./middleware/express-rate-limit') */
 const Article = require('./models/Article')
+const Comment = require('./models/Comment')
+const Like = require('./models/Like')
+const Profile = require('./models/Profile')
+const User = require('./models/User')
 const { apiLimiter } = require('./middleware/express-rate-limit')
 
 // ! DB connection
 db.authenticate()
-  .then(() => {
+  .then(async () => {
     console.log('Database connected...')
+    await Article.sync()
+    await Comment.sync()
+    await Like.sync()
+    await Profile.sync()
+    await User.sync()
   })
   .catch((err) => {
     console.log(`Error: ${err}`)
