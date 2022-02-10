@@ -1,7 +1,7 @@
 const dotenv = require('dotenv')
 
 dotenv.config()
-const https = require('https')
+const http = require('http')
 const fs = require('fs')
 const app = require('./app')
 
@@ -18,7 +18,7 @@ const normalizePort = (val) => {
   }
   return false
 }
-const port = normalizePort(process.env.PORT || '443')
+const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
 
 const errorHandler = (error) => {
@@ -39,12 +39,11 @@ const errorHandler = (error) => {
   }
 }
 
-const server = https.createServer(
-  {
+const server = http.createServer(
+  /* {
     key: SERVER_KEY, //! use fs.readFileSync('./key.pem') if stored in local
     cert: SERVER_CERT,
-    /* passphrase: SERVER_WORD, */
-  },
+  }, */
   app
 )
 
