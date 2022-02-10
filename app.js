@@ -29,7 +29,7 @@ db.authenticate()
     console.log('Database connected...')
     await User.sync({ force: true })
   })
-  .then(async () => {
+  /* .then(async () => {
     await Article.sync()
   })
   .then(async () => {
@@ -40,7 +40,7 @@ db.authenticate()
   })
   .then(async () => {
     await Profile.sync()
-  })
+  }) */
   .catch((err) => {
     console.log(`Error: ${err}`)
   })
