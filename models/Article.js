@@ -24,6 +24,7 @@ const Article = db.define('article', {
   userId: {
     type: Sequelize.UUID,
     defaultValue: User.id,
+    allowNull: true,
   },
   imageUrl: {
     type: Sequelize.STRING,
