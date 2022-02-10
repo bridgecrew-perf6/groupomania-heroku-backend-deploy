@@ -46,6 +46,6 @@ const update = async () => {
   await User.sync(/* { force: true } */)
 }
 
-update()
+// update()
 
 module.exports = User
