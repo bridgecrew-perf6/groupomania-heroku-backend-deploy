@@ -49,6 +49,6 @@ Comment.belongsTo(User)
 
 Profile.hasMany(Comment)
 Comment.belongsTo(Profile) //! This way associated profile appears when we fetch Comment List
-Comment.sync(/* { force: true } */)
+Comment.sync({ force: true })
 
 module.exports = Comment
