@@ -38,7 +38,7 @@ const User = db.define('user', {
   profileId: {
     type: Sequelize.UUID,
     allowNull: true,
-    defaultValue: Profile?.id || null,
+    defaultValue: Profile?.id,
   },
 })
 
