@@ -20,11 +20,13 @@ const Article = require('./models/Article')
 const { apiLimiter } = require('./middleware/express-rate-limit')
 
 // ! DB connection
-db.authenticate().then(() => {
-  console.log('Database connected...');
-}).catch((err) => {
-  console.log(`Error: ${err}`);
-})
+db.authenticate()
+  .then(() => {
+    console.log('Database connected...')
+  })
+  .catch((err) => {
+    console.log(`Error: ${err}`)
+  })
 const corsOptions = {
   origin: 'https://groupomania-test-deploy-aurelien-guillaudon.netlify.app',
 }
@@ -60,7 +62,7 @@ app.use('/images', express.static(path.join(__dirname, 'images')))
 app.use('/api/users', apiLimiter, userListRoutes)
 app.use('/api/articles', apiLimiter, articleRoutes)
 
-app.use('/api/auth', userRoutes)//! more limitations on route/user.js
+app.use('/api/auth', userRoutes) //! more limitations on route/user.js
 //! hit 429 if we hit this route too often
 module.exports = app
 // npm uninstall node-pre-gyp --save

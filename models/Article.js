@@ -16,7 +16,8 @@ const Article = db.define('article', {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  description: { // todo rename to content
+  description: {
+    // todo rename to content
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -41,7 +42,6 @@ const Article = db.define('article', {
     defaultValue: Profile.id,
     allowNull: true,
   },
-
 })
 
 User.hasMany(Article)
@@ -49,7 +49,7 @@ Article.belongsTo(User)
 Profile.hasMany(Article)
 Article.belongsTo(Profile)
 
-Article.sync()
+Article.sync({ force: true })
 
 exports.ShowUsersTasks = async () => {
   await db.sync() // ! check if it can be removed

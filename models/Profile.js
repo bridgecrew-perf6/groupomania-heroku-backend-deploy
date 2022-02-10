@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize')// TODO check for more validation constrains like isUrl ..
+const Sequelize = require('sequelize') // TODO check for more validation constrains like isUrl ..
 const db = require('../config/database-config')
 const User = require('./User')
 

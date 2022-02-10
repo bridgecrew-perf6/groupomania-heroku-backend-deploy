@@ -33,7 +33,8 @@ const Comment = db.define('comment', {
     defaultValue: Article.id,
     allowNull: false,
   },
-  profileId: { //! isInit a Comment creation (should allowNull : false btw)
+  profileId: {
+    //! isInit a Comment creation (should allowNull : false btw)
     type: Sequelize.UUID,
     defaultValue: Profile.id,
     allowNull: false,

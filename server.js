@@ -10,8 +10,12 @@ const { SERVER_KEY, SERVER_CERT, SERVER_WORD } = process.env
 const normalizePort = (val) => {
   const port = parseInt(val, 10)
 
-  if (isNaN(port)) { return val }
-  if (port >= 0) { return port }
+  if (isNaN(port)) {
+    return val
+  }
+  if (port >= 0) {
+    return port
+  }
   return false
 }
 const port = normalizePort(process.env.PORT || '443')
@@ -35,11 +39,14 @@ const errorHandler = (error) => {
   }
 }
 
-const server = https.createServer({
-  key: SERVER_KEY, //! use fs.readFileSync('./key.pem') if stored in local
-  cert: SERVER_CERT,
-  /* passphrase: SERVER_WORD, */
-}, app)
+const server = https.createServer(
+  {
+    key: SERVER_KEY, //! use fs.readFileSync('./key.pem') if stored in local
+    cert: SERVER_CERT,
+    /* passphrase: SERVER_WORD, */
+  },
+  app
+)
 
 server.on('error', errorHandler)
 

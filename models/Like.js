@@ -14,18 +14,19 @@ const Like = db.define('like', {
     type: Sequelize.UUID,
     defaultValue: Article.id,
   },
-  userId: { /* //! might switch to userID but i am afraid it conflicts */
+  userId: {
+    /* //! might switch to userID but i am afraid it conflicts */
     type: Sequelize.UUID,
     defaultValue: User.id,
   },
   value: {
-    type: /* Sequelize.ENUM('like', 'disliked', 'default'), */Sequelize.STRING,
+    type: /* Sequelize.ENUM('like', 'disliked', 'default'), */ Sequelize.STRING,
     defaultValue: 'default',
   },
 })
 
 Article.hasMany(Like) //!   had a hasMany relation setup first
-Like.belongsTo(Article)//! BUT for every entry in table like, it is only associated
+Like.belongsTo(Article) //! BUT for every entry in table like, it is only associated
 User.hasMany(Like) //!      with one article and one user
 Like.belongsTo(User)
 Like.sync(/* { force: true } */)

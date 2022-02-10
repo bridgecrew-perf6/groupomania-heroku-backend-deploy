@@ -16,8 +16,10 @@ const User = db.define('user', {
     unique: {
       msg: 'email present in database already',
     },
-    validate: { //! could remove now express-validator is implemented
-      notNull: { //! as i am more comfortable dealing with express-validator errors
+    validate: {
+      //! could remove now express-validator is implemented
+      notNull: {
+        //! as i am more comfortable dealing with express-validator errors
         msg: 'email required',
       },
       isEmail: {
@@ -38,11 +40,10 @@ const User = db.define('user', {
     allowNull: true,
     defaultValue: Profile.id,
   },
-
 })
 
 const update = async () => {
-  await User.sync()
+  await User.sync({ force: true })
 }
 
 update()
