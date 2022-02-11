@@ -1,1 +1,2 @@
-web: with_ngrok node server.js
+web: ./start.sh
+worker: start_worker-process

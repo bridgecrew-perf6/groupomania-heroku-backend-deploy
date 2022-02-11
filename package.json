@@ -4,7 +4,7 @@
   "description": "crud backend for groupomania open classroom project",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "./start.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
