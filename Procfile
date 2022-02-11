@@ -1,1 +1,1 @@
-web:node --inspect=9229 server.js
+web: with_ngrok node server.js
