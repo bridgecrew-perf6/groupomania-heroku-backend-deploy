@@ -25,7 +25,7 @@ exports.signup = async (req, res, next) => {
       return res.status(401).json({ error })
     }
   } catch (err) {
-    res.status(500).json({ error: new Error(err) })
+    return res.status(500).json({ error: new Error(err) })
   }
   try {
     const hash = await bcrypt.hash(req.body.password, 10)
@@ -38,7 +38,7 @@ exports.signup = async (req, res, next) => {
       return res.status(201).json({ message: 'Utilisateur créé' })
     })
   } catch (error) {
-    res.status(400).json({ error }) //! might wanna separate different error codes  now i hav all inside try catch
+    return res.status(400).json({ error }) //! might wanna separate different error codes  now i hav all inside try catch
   }
 }
 exports.login = (req, res, next) => {
