@@ -6,7 +6,7 @@
   "configurations": [
     {
       "name": "heroku",
-      "port": 9229,
+      "port": 4040,
       "request": "attach",
       "type": "pwa-chrome",
       "address": "localhost",
