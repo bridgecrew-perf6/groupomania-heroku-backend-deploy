@@ -23,7 +23,7 @@ const Article = db.define('article', {
   },
   userId: {
     type: Sequelize.UUID,
-    defaultValue: User.id,
+    defaultValue: User?.id,
     allowNull: true,
   },
   imageUrl: {
@@ -40,17 +40,17 @@ const Article = db.define('article', {
   },
   profileId: {
     type: Sequelize.UUID,
-    defaultValue: Profile.id,
+    defaultValue: Profile?.id,
     allowNull: true,
   },
 })
 
 User.hasMany(Article)
 Article.belongsTo(User)
-Profile.hasMany(Article)
-Article.belongsTo(Profile)
+/* Profile.hasMany(Article)
+Article.belongsTo(Profile) */
 
-Article.sync({ force: true })
+// Article.sync({ force: true })
 
 exports.ShowUsersTasks = async () => {
   await db.sync() // ! check if it can be removed

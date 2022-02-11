@@ -25,18 +25,18 @@ const Comment = db.define('comment', {
   },
   userId: {
     type: Sequelize.UUID,
-    defaultValue: User.id,
+    defaultValue: User?.id,
     allowNull: true,
   },
   articleId: {
     type: Sequelize.UUID,
-    defaultValue: Article.id,
+    defaultValue: Article?.id,
     allowNull: true,
   },
   profileId: {
     //! isInit a Comment creation (should allowNull : false btw)
     type: Sequelize.UUID,
-    defaultValue: Profile.id,
+    defaultValue: Profile?.id,
     allowNull: true,
   },
 })
@@ -49,6 +49,6 @@ Comment.belongsTo(User)
 
 Profile.hasMany(Comment)
 Comment.belongsTo(Profile) //! This way associated profile appears when we fetch Comment List
-Comment.sync({ force: true })
+// Comment.sync({ force: true })
 
 module.exports = Comment

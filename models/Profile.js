@@ -16,7 +16,7 @@ const Profile = db.define('profile', {
   userId: {
     type: Sequelize.UUID,
     defaultValue: User?.id,
-    allowNull: false,
+    allowNull: true,
   },
   userPicUrl: {
     type: Sequelize.STRING,
@@ -30,9 +30,9 @@ const Profile = db.define('profile', {
 
 Profile?.belongsTo(User)
 Profile?.hasOne(User)
-User.belongsTo(Profile)
-User.hasOne(Profile)
+User?.belongsTo(Profile)
+User?.hasOne(Profile)
 
-Profile.sync({ force: true })
+/* Profile.sync({ force: true }) */
 
 module.exports = Profile
