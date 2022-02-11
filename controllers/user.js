@@ -12,7 +12,7 @@ const User = require('../models/User')
 const { ADMIN_MASTER_EMAIL, ADMIN_MASTER_PASS } = process.env
 
 exports.signup = async (req, res, next) => {
-  const errors = validationResult(req)//! normalize email in route/user - checks for strong password
+  const errors = validationResult(req) //! normalize email in route/user - checks for strong password
   if (!errors.isEmpty()) {
     console.error(errors.array())
     return res.status(400).json({ errors: errors.array() })
@@ -29,15 +29,14 @@ exports.signup = async (req, res, next) => {
   }
   try {
     const hash = await bcrypt.hash(req.body.password, 10)
-    bcrypt.compare(ADMIN_MASTER_PASS, hash)
-      .then(async (valid) => {
-        const newUser = await User.create({
-          email: req.body.email,
-          password: hash, //! MASTER ACCOUNT IS GOING TO PROMOTE OTHERS ACCOUNTS TO ADMIN STATUS
-          isAdmin: ((req.body.email === ADMIN_MASTER_EMAIL) && valid),
-        })
-        res.status(201).json({ message: 'Utilisateur créé' })
+    bcrypt.compare(ADMIN_MASTER_PASS, hash).then(async (valid) => {
+      const newUser = await User.create({
+        email: req.body.email,
+        password: hash, //! MASTER ACCOUNT IS GOING TO PROMOTE OTHERS ACCOUNTS TO ADMIN STATUS
+        isAdmin: req.body.email === ADMIN_MASTER_EMAIL && valid,
       })
+      return res.status(201).json({ message: 'Utilisateur créé' })
+    })
   } catch (error) {
     res.status(400).json({ error }) //! might wanna separate different error codes  now i hav all inside try catch
   }
@@ -55,7 +54,8 @@ exports.login = (req, res, next) => {
         error.code = 'auth/user-not-found' //! to trigger toast in front
         return res.status(401).json(error)
       }
-      bcrypt.compare(req.body.password, user.password)
+      bcrypt
+        .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
             const error = new Error('Mot de passe incorrect!')
@@ -67,7 +67,7 @@ exports.login = (req, res, next) => {
             token: jwt.sign(
               { userId: user.id },
               'RANDOM_TOKEN_SECRET', // TODO REFRESH
-              { expiresIn: '24h' },
+              { expiresIn: '24h' }
             ),
             isAdmin: user.isAdmin, //! allows user to acces protected routes
           })
@@ -95,15 +95,17 @@ exports.getAllUsers = (req, res, next) => {
       }  //! triple check
     })
     .catch((error) => res.status(500).json({ error })) */
-  User.findAll({ include: { all: true } })
-    .then((users) => res.status(200).json(users))
+  User.findAll({ include: { all: true } }).then((users) =>
+    res.status(200).json(users)
+  )
 }
 
 exports.deleteUser = (req, res, next) => {
   const { id } = req.params //! might want to check against id extracted from token
   User.findOne({ where: { id }, include: { all: true } }) //! might be weird
     .then((user) => {
-      user.destroy()
+      user
+        .destroy()
         .then(() => res.status(200).json({ message: 'Utilisateur supprimé' }))
         .catch((error) => res.status(500).json({ error: new Error(error) }))
     })
