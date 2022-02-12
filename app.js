@@ -27,12 +27,12 @@ const { apiLimiter } = require('./middleware/express-rate-limit')
 db.authenticate()
   .then(async () => {
     console.log('Database connected...')
-    await User.sync(/* { force: true } */)
+    /*  await Profile.sync()
+     */
+    // await User.sync(/* { force: true } */)
   })
-  .then(async () => {
-    await Profile.sync()
-  })
-  .then(async () => {
+
+  /* .then(async () => {
     await Article.sync()
   })
   .then(async () => {
@@ -40,7 +40,7 @@ db.authenticate()
   })
   .then(async () => {
     await Like.sync()
-  })
+  }) */
 
   .catch((err) => {
     console.log(`Error: ${err}`)

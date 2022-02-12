@@ -38,14 +38,14 @@ const User = db.define('user', {
   profileId: {
     type: Sequelize.UUID,
     allowNull: true,
-    defaultValue: Profile?.id,
+    defaultValue: Profile.id,
   },
 })
 
 const update = async () => {
-  await User.sync({ force: true })
+  await User.sync()
 }
 
-// update()
+update()
 
 module.exports = User

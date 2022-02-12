@@ -18,29 +18,30 @@ exports.signup = async (req, res, next) => {
     return res.status(400).json({ errors: errors.array() })
   }
   try {
-    const userStored = await User.findOne({ where: { email: req.body.email } })
+    const userStored = await User.findOne({
+      where: { email: req.body.email },
+      include: { all: true },
+    })
     if (userStored) {
       const error = new Error('User already in DB. Choose another email')
       error.code = 'auth/email-already-in-use'
       return res.status(401).json({ error })
     }
-    if (userStored === null) {
-      try {
-        const hash = await bcrypt.hash(req.body.password, 10)
-        bcrypt.compare(ADMIN_MASTER_PASS, hash).then(async (valid) => {
-          const newUser = await User.create({
-            email: req.body.email,
-            password: hash, //! MASTER ACCOUNT IS GOING TO PROMOTE OTHERS ACCOUNTS TO ADMIN STATUS
-            isAdmin: req.body.email === ADMIN_MASTER_EMAIL && valid,
-          })
-          return res.status(201).json({ message: 'Utilisateur créé' })
-        })
-      } catch (error) {
-        return res.status(400).json({ error }) //! might wanna separate different error codes  now i hav all inside try catch
-      }
-    }
   } catch (err) {
     return res.status(500).json({ error: new Error(err) })
+  }
+  try {
+    const hash = await bcrypt.hash(req.body.password, 10)
+    bcrypt.compare(ADMIN_MASTER_PASS, hash).then(async (valid) => {
+      const newUser = await User.create({
+        email: req.body.email,
+        password: hash, //! MASTER ACCOUNT IS GOING TO PROMOTE OTHERS ACCOUNTS TO ADMIN STATUS
+        isAdmin: req.body.email === ADMIN_MASTER_EMAIL && valid,
+      })
+      res.status(201).json({ message: 'Utilisateur créé' })
+    })
+  } catch (error) {
+    res.status(400).json({ error }) //! might wanna separate different error codes  now i hav all inside try catch
   }
 }
 exports.login = (req, res, next) => {
