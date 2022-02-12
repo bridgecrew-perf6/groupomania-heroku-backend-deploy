@@ -31,8 +31,7 @@ const Profile = db.define('profile', {
 Profile.belongsTo(User, { constraints: false })
 Profile.hasOne(User)
 User.belongsTo(Profile, { constraints: false })
-// User.hasOne(Profile)
-
+User.hasOne(Profile)
 Profile.sync()
 
 module.exports = Profile
